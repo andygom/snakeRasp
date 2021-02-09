@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import random
 import time
-from adafruit_servokit import adafruit_servokit
+from adafruit_servokit import ServoKit
 kit = ServoKit(channels=16)
 
 

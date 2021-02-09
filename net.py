@@ -1,8 +1,8 @@
 import numpy as np
 from numpy import random
 import time
-# from adafruit_servokit import adafruit_servokit
-# kit = ServoKit(channels=16)
+from adafruit_servokit import adafruit_servokit
+kit = ServoKit(channels=16)
 
 
 # weightsIH = np.random.random((14, 14)) * 2 - 1
@@ -92,6 +92,15 @@ def motorNorm(motorArray):
             else:
                 motor[i] = abs(motorArray[i] * 180)
         print(motor)
+
+        kit.servo[0].angle = motor[0]
+        kit.servo[1].angle = motor[1]
+        kit.servo[2].angle = motor[2]
+        kit.servo[3].angle = motor[3]
+        kit.servo[4].angle = motor[4]
+        kit.servo[5].angle = motor[5]
+        kit.servo[6].angle = motor[6]
+        kit.servo[7].angle = motor[7]
                 
         # implementar mandar motor a los motores reales
 
@@ -170,9 +179,20 @@ def network():
 try:
 
     while True:
+        if COUNT == 0:
+
+            kit.servo[0].angle = 90
+            kit.servo[1].angle = 90
+            kit.servo[2].angle = 90
+            kit.servo[3].angle = 90
+            kit.servo[4].angle = 90
+            kit.servo[5].angle = 90
+            kit.servo[6].angle = 90
+            kit.servo[7].angle = 90
+
         network()
         COUNT = COUNT + 1
-        print(COUNT)
+        
         # intentar no utilizar sleep y que sean intervalos iguales a los del simulador 
         time.sleep(2)
 

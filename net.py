@@ -83,15 +83,22 @@ COUNT = 0
 # normalización de los motores
 def motorNorm(motorArray):
 
-        # print(motorArray)
+        print(motorArray)
         for i in range(0, len(motorArray)):
 
-            if abs(motorArray[i] * 180) == 0:
-
-                motor[i] = 90
-            else:
-                motor[i] = abs(motorArray[i] * 180)
+            motor[i] = ((motorArray[i] + 1) * 180) / 2
+            
         print(motor)
+
+            # if abs(motorArray[i] * 180) == 0:
+
+            #     # -1 - 1
+            #     180    0
+
+            #     motor[i] = 90
+            # else:
+            #     motor[i] = abs(motorArray[i] * 180)
+        # print(motor)
 
         kit.servo[0].angle = motor[0]
         kit.servo[1].angle = motor[1]
@@ -122,13 +129,17 @@ def input():
 def network():
 
     sensorInput = np.random.random((14)) * 2 - 1
+    
 
     print(COUNT)
     if COUNT == 0:
         sensorInput = np.random.random((14)) * 2 - 1
     else:
-        for i in range(6, 14):
+        for i in range(0, 6):
             sensorInput[i] = neuronO[i - 6]
+
+        # for i in range(6, 14):
+        #     sensorInput[i] = neuronO[i - 6]
         # print(sensorInput)
         
     # print(motor)
@@ -179,16 +190,16 @@ def network():
 try:
 
     while True:
-        if COUNT == 0:
+        # if COUNT == 0:
 
-            kit.servo[0].angle = 90
-            kit.servo[1].angle = 90
-            kit.servo[2].angle = 90
-            kit.servo[3].angle = 90
-            kit.servo[4].angle = 90
-            kit.servo[5].angle = 90
-            kit.servo[6].angle = 90
-            kit.servo[7].angle = 90
+            # kit.servo[0].angle = 90
+            # kit.servo[1].angle = 90
+            # kit.servo[2].angle = 90
+            # kit.servo[3].angle = 90
+            # kit.servo[4].angle = 90
+            # kit.servo[5].angle = 90
+            # kit.servo[6].angle = 90
+            # kit.servo[7].angle = 90
 
         network()
         COUNT = COUNT + 1
